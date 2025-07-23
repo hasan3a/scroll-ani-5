@@ -321,20 +321,20 @@
             ];
 
             // Remove all CSS classes to avoid conflicts
-            // document.querySelector('.cards').classList.remove('spread', 'stacked');
+            document.querySelector('.cards').classList.remove('spread', 'stacked');
 
 
-            // Use fromTo instead of set + to for smoother animation
-            // cards.forEach((card, i) => {
-            //     // Set initial spread position immediately without transition
-            //     gsap.set(card, {
-            //         x: spreadData[i].x,
-            //         y: spreadData[i].y,
-            //         rotation: spreadData[i].rotation,
-            //         xPercent: -50,
-            //         // Enable hardware acceleration
-            //     });
-            // });
+            Use fromTo instead of set + to for smoother animation
+            cards.forEach((card, i) => {
+                // Set initial spread position immediately without transition
+                gsap.set(card, {
+                    x: spreadData[i].x,
+                    y: spreadData[i].y,
+                    rotation: spreadData[i].rotation,
+                    xPercent: -50,
+                    // Enable hardware acceleration
+                });
+            });
             // remove the popup 
             gsap.to(popups, {
                 scrollTrigger: {
