@@ -1,0 +1,421 @@
+ body {
+
+     min-height: 100vh;
+     background: #f5f5f5;
+     font-family: sans-serif;
+     position: relative;
+     overflow-x: hidden;
+     margin: 0;
+ }
+
+ body.lock-scroll {
+     height: 100vh;
+     overflow: hidden;
+     /* position: fixed;
+     
+     top: 0;
+     left: 0;
+     right: 0;
+     width: 100%; */
+ }
+
+ .container {
+     position: relative;
+     display: grid;
+     justify-content: center;
+     place-items: center;
+     gap: 1.5rem;
+     /* height: 100vh;
+            align-content: center; */
+
+
+ }
+
+ .cards {
+     position: relative;
+     width: 600px;
+     height: 250px;
+     display: flex;
+     justify-content: center;
+     --card-width: 200px;
+     --spacing: calc(var(--card-width) / 2);
+     opacity: 0;
+ }
+
+ .card {
+     width: var(--card-width);
+     height: var(--card-width);
+     position: absolute;
+     top: 0;
+     left: 50%;
+     border-radius: 1rem;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+     object-fit: cover;
+     background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: white;
+     font-weight: bold;
+     /* CSS transforms for different states */
+     transform: translateX(-50%);
+     /* Add smooth transition for transform changes */
+     transform-origin: center center;
+     /* background-image: url("../img/Espresso\ on\ Drip\ Tray.png"); */
+     background-size: cover;
+
+ }
+
+ .cards.spread .card {
+     transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+ }
+
+ /* bg image */
+
+  .cards .card:nth-child(1) {
+  background-image: url("./Espresso\ on\ Drip\ Tray.png");
+  }
+  .cards .card:nth-child(2) {
+background-image: url("./Abstract\ Bokeh\ Lights.png");
+  }
+  .cards .card:nth-child(3) {
+ background-image: url("./Futuristic\ Visor\ Portrait.png");
+  }
+  .cards .card:nth-child(4) {
+  background-image: url("./Ginkgo\ Leaves\ Reflection.png");
+  }
+  .cards .card:nth-child(5) {
+     background-image: url("./Red\ Suitcase\ by\ the\ Sea.png");
+  }
+  .cards .card:nth-child(6) {
+  background-image: url("./Silver\ Bag\ on\ Red\ Chair.png");
+  }
+  .cards .card:nth-child(7) {
+ background-image: url("./Stanley\ Modern\ Design\ Speaker.png");
+ object-fit: cover;
+  }
+
+ /* Stacked state transforms */
+ .cards.stacked .card:nth-child(1) {
+     transform: translateX(-50%) rotate(-10deg);
+       
+ }
+
+ .cards.stacked .card:nth-child(2) {
+     transform: translateX(-50%) rotate(-10deg);
+      
+ }
+
+ .cards.stacked .card:nth-child(3) {
+     transform: translateX(-50%) rotate(-10deg);
+     
+ }
+
+ .cards.stacked .card:nth-child(4) {
+     transform: translateX(-50%) rotate(-10deg);
+    
+ }
+
+ .cards.stacked .card:nth-child(5) {
+     transform: translateX(-50%) rotate(-10deg);
+   
+ }
+
+ .cards.stacked .card:nth-child(6) {
+     transform: translateX(-50%) rotate(-10deg);
+    
+ }
+
+ .cards.stacked .card:nth-child(7) {
+     transform: translateX(-50%) rotate(-10deg);
+     
+ }
+
+ 
+ /* Spread state transforms */
+ .cards.spread .card:nth-child(1) {
+     transform: translate(calc(-50% - var(--spacing) * 3.6), 40px) rotate(-12deg);
+ }
+
+ .cards.spread .card:nth-child(2) {
+     transform: translate(calc(-50% - var(--spacing) * 2.4), -10px) rotate(-6deg);
+ }
+
+ .cards.spread .card:nth-child(3) {
+     transform: translate(calc(-50% - var(--spacing) * 1.3), 10px) rotate(-4deg);
+ }
+
+ .cards.spread .card:nth-child(4) {
+     transform: translate(calc(-50% + 0px), 10px) rotate(0deg);
+ }
+
+ .cards.spread .card:nth-child(5) {
+     transform: translate(calc(-50% + var(--spacing) * 1.3), 10px) rotate(4deg);
+ }
+
+ .cards.spread .card:nth-child(6) {
+     transform: translate(calc(-50% + var(--spacing) * 2.4), 20px) rotate(8deg);
+ }
+
+ .cards.spread .card:nth-child(7) {
+     transform: translate(calc(-50% + var(--spacing) * 3.6), 10px) rotate(12deg);
+ }
+
+
+
+ /* vertical stacking */
+
+ .cards.verticalspread .card:nth-child(1) {
+     transform: translate(0%, 0%) scale(1);
+
+ }
+
+ .cards.verticalspread .card:nth-child(2) {
+     transform: translate(45%, 25%) scale(0.97);
+
+ }
+
+ .cards.verticalspread .card:nth-child(3) {
+     transform: translate(90%, 50%) scale(0.94);
+
+ }
+
+ .cards.verticalspread .card:nth-child(4) {
+     transform: translate(135%, 75%) scale(0.91);
+
+ }
+
+ .cards.verticalspread .card:nth-child(5) {
+     transform: translate(180%, 100%) scale(0.88);
+
+ }
+
+ .cards.verticalspread .card:nth-child(6) {
+     transform: translate(225%, 125%) scale(0.85);
+
+ }
+
+ /* Popup styles */
+ .popup,
+ .popup-showcase {
+     position: absolute;
+     top: -50px;
+     left: 50%;
+     transform: translateX(-50%) scale(0);
+     background: #333;
+     color: white;
+     padding: 8px 12px;
+     border-radius: 6px;
+     font-size: 14px;
+     font-weight: bold;
+     white-space: nowrap;
+     opacity: 0;
+     z-index: 10;
+     pointer-events: none;
+ }
+
+ .popup::after,
+ .popup-showcase::after {
+     content: '';
+     position: absolute;
+     top: 100%;
+     left: 70%;
+     transform: translateX(-50%);
+     border: 6px solid transparent;
+
+ }
+
+ .popup.one {
+     background-color: rgb(61, 255, 83);
+ }
+
+ .popup.one::after {
+     border-top-color: rgb(61, 255, 83);
+
+ }
+
+ 
+
+ .popup.two {
+     background-color: rgb(255, 210, 61);
+ }
+
+ .popup.two::after {
+     border-top-color: rgb(255, 210, 61);
+
+ }
+ .popup-showcase.one {
+     background-color: rgb(61, 255, 145);
+ }
+
+  .popup-showcase.one::after {
+     border-top-color: rgb(61, 255, 145);
+
+ }
+ .popup-showcase.two {
+     background-color: rgb(61, 109, 255);
+ }
+
+ .popup-showcase.two::after {
+     border-top-color:rgb(61, 109, 255);
+
+ }
+
+ /* Popup visible state */
+ .popup.show {
+     transform: translateX(-50%) scale(1);
+     opacity: 1;
+ }
+
+ .text-landing {
+     text-align: center;
+ }
+
+ .button-wrapper,
+ .button-wrapper-showcase {
+     display: flex;
+     gap: 2rem;
+     align-items: center;
+ }
+
+ .button-wrapper-showcase {
+     margin-top: 2rem;
+ }
+
+ .primary-button {
+     /* margin-top: 30px; */
+     padding: 12px 24px;
+     font-size: 16px;
+     cursor: pointer;
+     background: #4ecdc4;
+     color: white;
+     border: none;
+     border-radius: 2rem;
+     transition: background 0.3s ease;
+     opacity: 0;
+     transform: translateY(40px);
+ }
+
+ .secondary-button {
+     border: none;
+     opacity: 0;
+     transform: translateY(40px);
+     background-color: transparent;
+     cursor: pointer;
+ }
+
+
+ .primary-button:hover {
+     background: #45b7aa;
+ }
+
+ .text-landing {
+     position: relative;
+     z-index: -1;
+ }
+
+ .text-landing,
+ .text-showcase {
+     opacity: 0;
+ }
+
+ .text-showcase {
+     display: inline-block;
+     width: 35%;
+ }
+
+ .heading-split {
+     text-align: center;
+     color: #333;
+     opacity: 0;
+     margin: 2rem 0;
+     font-size: 4rem;
+
+ }
+
+ .heading-split-showcase {
+     opacity: 0;
+ }
+
+ .heading-split-showcase {
+     text-align: left;
+     color: #333;
+     opacity: 0;
+     margin: 2rem 0;
+     font-size: 4rem;
+ }
+
+ .spacing-huge {
+     height: 15rem;
+     width: 100%;
+ }
+
+ .showcase {
+     max-width: 1240px;
+     padding: 0 2rem;
+ }
+
+ .badge-showcase {}
+
+ .card {
+     will-change: transform;
+ }
+
+ /* Tablet - Hide cards 4, 5, 6, 7 - only show first 3 cards */
+ @media (max-width: 768px) {
+
+     .card:nth-child(1),
+     .card:nth-child(2),
+     .card:nth-child(6),
+     .card:nth-child(7) {
+         display: none;
+     }
+
+     .container {
+         height: 80vh;
+         align-content: center;
+         gap: 2.5rem;
+     }
+
+     .cards {
+         position: relative;
+         width: auto;
+         height: 200px;
+         display: flex;
+         justify-content: center;
+         --card-width: 150px;
+         --spacing: calc(var(--card-width) / 2);
+         opacity: 0;
+     }
+
+     .heading-split {
+         margin: 2rem 0;
+
+
+     }
+
+     .heading-split,
+     .heading-split-showcase {
+         font-size: 2.5rem;
+
+
+     }
+
+     .button-wrapper,
+     .button-wrapper-showcase {
+
+         gap: 1rem;
+
+     }
+     .text-showcase {
+     display: inline-block;
+     width: 70%;
+ }
+ .spacing-huge {
+     height: 7rem;
+     width: 100%;
+ }
+ /* .popup,.popup-showcase .popup::after, .popup-showcase::after {
+    display: none;
+ } */
+ }
